@@ -15,7 +15,7 @@ public class MybatisGen {
 
     public static void main(String[] args) {
         String path = System.getProperty("user.dir").concat(File.separator).concat("src").concat(File.separator).concat("main")
-                .concat(File.separator).concat("java").concat(File.separator).concat("com").concat(File.separator).concat("soft2242").concat(File.separator).concat("shop").concat(File.separator);
+                .concat(File.separator).concat("java").concat(File.separator).concat("com").concat(File.separator).concat("example").concat(File.separator).concat("shop_online").concat(File.separator);
         String pathXml = System.getProperty("user.dir").concat(File.separator).concat("src").concat(File.separator).concat("main")
                 .concat(File.separator).concat("resources").concat(File.separator).concat("mapper");
 
