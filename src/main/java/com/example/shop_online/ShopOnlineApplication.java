@@ -1,4 +1,4 @@
-package com.example.shop_online.vo;
+package com.example.shop_online;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
