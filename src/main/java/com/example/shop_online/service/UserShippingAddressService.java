@@ -22,7 +22,25 @@ public interface UserShippingAddressService extends IService<UserShippingAddress
     //修改
     Integer editShippingAddress(AddressVO addressVO);
     //获取
-
- List<AddressVO> getList(Integer userId);
+    /**
+     * 收货地址列表
+     *
+     * @param userId
+     * @return
+     */
+    List<AddressVO> getList(Integer userId);
+    /**
+     *收货地址详情
+     *
+     * @param id
+     * @return
+     */
+    AddressVO getAddressInfo(Integer id);
+    /**
+     * 删除收货地址
+     *
+     * @param id
+     */
+    void removeShippingAddress(Integer id);
 
 }

@@ -48,11 +48,31 @@ public class UserShippingAddressController {
         Integer addressId = userShippingAddressService.editShippingAddress(addressVO);
         return Result.ok(addressId);
     }
-//    @Operation(summary = "获取收货地址")
-//    @PutMapping("address")
-//    public Result<List<AddressVO>> getAddressList(HttpServletRequest request) {
-//        Integer userId = getUserId(request);
-//        List<AddressVO> list = userShippingAddressService.getList(userId);
-//        return Result.ok(list);
-//    }
+
+    @Operation(summary = "收货地址列表")
+    @GetMapping("address")
+    public Result<List<AddressVO>> getList(HttpServletRequest request) {
+        Integer userId = getUserId(request);
+        List<AddressVO> list = userShippingAddressService.getList(userId);
+        return Result.ok(list);
+
+    }
+    @Operation(summary = "收货地址详情")
+    @GetMapping("address/detail")
+    public Result<AddressVO> getAddressDetail(@RequestParam Integer id, HttpServletRequest request) {
+        if (id == null) {
+            throw new ServerException("请求参数不能为空");
+        }
+        AddressVO addressInfo = userShippingAddressService.getAddressInfo(id);
+        return Result.ok(addressInfo);
+    }
+    @Operation(summary = "删除收货地址")
+    @DeleteMapping("address")
+    public Result removeAddress(@RequestParam Integer id, HttpServletRequest request) {
+        if (id == null) {
+            throw new ServerException("请求参数不能为空");
+        }
+        userShippingAddressService.removeShippingAddress(id);
+        return Result.ok();
+    }
 }

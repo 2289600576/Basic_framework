@@ -58,17 +58,27 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
 
     @Override
     public List<AddressVO> getList(Integer userId) {
-        LambdaQueryWrapper<UserShippingAddress> queryWrapper =new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserShippingAddress::getIsDefault,userId);
-        queryWrapper.orderByDesc(UserShippingAddress::getIsDefault);
-        List<UserShippingAddress> list = baseMapper.selectList(queryWrapper);
-        List<AddressVO> addressVOS = AddressConvert.INSTANCE.convertToAddressVOList(list);
-        return addressVOS;
-
-//
-//        List<UserShippingAddress> list = baseMapper.selectList(new LambdaQueryWrapper<UserShippingAddress>()
-//                .eq(UserShippingAddress::getIsDefault, AddressDefaultEnum.DEFAULT_ADDRESS.getValue()));
-//        List<AddressVO> convert = AddressConvert.INSTANCE.convertToAddressVOList(list);
-//        return convert;
+        LambdaQueryWrapper<UserShippingAddress> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserShippingAddress::getUserId, userId);
+//        根据是否为默认地址和创建时间倒序排列
+        wrapper.orderByDesc(UserShippingAddress::getIsDefault);
+        wrapper.orderByDesc(UserShippingAddress::getCreateTime);
+        List<UserShippingAddress> list = baseMapper.selectList(wrapper);
+        List<AddressVO> results = AddressConvert.INSTANCE.convertToAddressVOList(list);
+        return results;
     }
-}
+    @Override
+    public AddressVO getAddressInfo(Integer id) {
+        UserShippingAddress userShippingAddress = baseMapper.selectById(id);
+        if (userShippingAddress == null) {
+            throw new ServerException("地址不存在");
+        }
+        AddressVO addressVO = AddressConvert.INSTANCE.convertToAddressVO(userShippingAddress);
+        return addressVO;
+    }
+    @Override
+    public void removeShippingAddress(Integer id) {
+        removeById(id);
+    }
+    }
+
