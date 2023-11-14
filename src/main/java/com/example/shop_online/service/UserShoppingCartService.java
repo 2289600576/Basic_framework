@@ -4,6 +4,7 @@ import com.example.shop_online.entity.UserShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.shop_online.vo.CartGoodsVO;
 import com.example.shop_online.vo.CartQuery;
+import com.example.shop_online.vo.EditCartQuery;
 import io.lettuce.core.dynamic.annotation.Param;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface UserShoppingCartService extends IService<UserShoppingCart> {
     //購物車列表
     List<CartGoodsVO> shopCartList(Integer useId);
     //修改購物車
+    CartGoodsVO editCart(EditCartQuery query);
+    //刪除
+    void removeGartGoods(Integer userId,List<Integer> ids);
 }
