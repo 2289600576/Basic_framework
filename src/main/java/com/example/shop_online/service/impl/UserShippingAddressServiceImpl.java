@@ -26,6 +26,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
 
 //private AddressVO addressVO;
     @Override
+    //添加收货地址
     public Integer saveShippingAddress(AddressVO addressVO) {
         UserShippingAddress convert = AddressConvert.INSTANCE.convert(addressVO);
         if (addressVO.getIsDefault()== AddressDefaultEnum.DEFAULT_ADDRESS.getValue()){
@@ -41,6 +42,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
 ;    }
 
     @Override
+    //修改收货地址
     public Integer editShippingAddress(AddressVO addressVO) {
         UserShippingAddress userShippingAddress = baseMapper.selectById(addressVO.getId());
         if (userShippingAddress==null){
@@ -57,6 +59,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
     }
 
     @Override
+    //获取收货地址列表
     public List<AddressVO> getList(Integer userId) {
         LambdaQueryWrapper<UserShippingAddress> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserShippingAddress::getUserId, userId);
@@ -68,6 +71,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
         return results;
     }
     @Override
+    //获取收货地址详情
     public AddressVO getAddressInfo(Integer id) {
         UserShippingAddress userShippingAddress = baseMapper.selectById(id);
         if (userShippingAddress == null) {
@@ -77,6 +81,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
         return addressVO;
     }
     @Override
+//    删除收货地址
     public void removeShippingAddress(Integer id) {
         removeById(id);
     }
