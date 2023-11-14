@@ -111,30 +111,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
    @Override
    public String editUserAvatar(Integer userId, MultipartFile file) {
-      //读入配置信息
+//        读入配置信息
       String endpoint = fileResource.getEndpoint();
       String accessKeyId = aliyunResource.getAccessKeyId();
       String accessKeySecret = aliyunResource.getAccessKeySecret();
-      //创建OSSClient实例
+//        创建OSSClient实例
       OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
       String filename = file.getOriginalFilename();
-      //分隔文件名，获得文件后缀名
+//        分隔文件名，获得文件后缀名
       assert filename != null;
       String[] fileNameArr = filename.split("\\.");
       String suffix = fileNameArr[fileNameArr.length - 1];
+//        拼接得到新的上传文件名
       String uploadFileName = fileResource.getObjectName() + UUID.randomUUID() + "." + suffix;
-      //上传网络需要的字节流
+//        上传网络需要用的字节流
       InputStream inputStream = null;
       try {
          inputStream = file.getInputStream();
       } catch (IOException e) {
-         throw new RuntimeException(e);
+         throw new ServerException("文件上传失败");
       }
-      //执行阿里云上传操作
+//        执行阿里云上传操作
       ossClient.putObject(fileResource.getBucketName(), uploadFileName, inputStream);
-      //关闭ossClient
+//        关闭OSSClient
       ossClient.shutdown();
-      //修改用户头像
+
+//        修改用户头像
       User user = baseMapper.selectById(userId);
       if (user == null) {
          throw new ServerException("用户不存在");
@@ -145,6 +147,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
       return uploadFileName;
-
    }
 }

@@ -26,6 +26,6 @@ LoginResultVO login(UserLoginQuery query);
     UserVO editUserInfo(UserVO userVO);
 
 //修改头像
-    String editUserAvatar(Integer UserId, MultipartFile file);
+String editUserAvatar(Integer userId, MultipartFile file);
 
 }
