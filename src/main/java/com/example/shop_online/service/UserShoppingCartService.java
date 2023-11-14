@@ -21,4 +21,5 @@ public interface UserShoppingCartService extends IService<UserShoppingCart> {
     CartGoodsVO addShopCart (CartQuery query);
     //購物車列表
     List<CartGoodsVO> shopCartList(Integer useId);
+    //修改購物車
 }

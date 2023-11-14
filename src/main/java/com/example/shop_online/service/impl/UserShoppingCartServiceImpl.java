@@ -12,6 +12,8 @@ import com.example.shop_online.vo.CartQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -57,5 +59,11 @@ private  final GoodsMapper goodsMapper;
         goodsVO.setDiscount(goods.getDiscount());
 
         return goodsVO;
+    }
+
+    @Override
+    public List<CartGoodsVO> shopCartList(Integer useId) {
+        List<CartGoodsVO> list = baseMapper.getCartGoodsInfo(useId);
+        return list;
     }
 }
