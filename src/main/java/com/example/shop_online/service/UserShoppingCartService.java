@@ -19,11 +19,16 @@ import java.util.List;
  */
 public interface UserShoppingCartService extends IService<UserShoppingCart> {
     //計入購物車
-    CartGoodsVO addShopCart (CartQuery query);
+    CartGoodsVO addShopCart(CartQuery query);
+
     //購物車列表
     List<CartGoodsVO> shopCartList(Integer useId);
+
     //修改購物車
     CartGoodsVO editCart(EditCartQuery query);
+
     //刪除
-    void removeGartGoods(Integer userId,List<Integer> ids);
+    void removeCartGoods(Integer userId, List<Integer> ids);
+
+    void editCartSelected(Boolean selected, Integer userId);
 }

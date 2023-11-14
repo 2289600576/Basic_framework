@@ -100,7 +100,7 @@ private  final GoodsMapper goodsMapper;
     }
 
     @Override
-    public void removeGartGoods(Integer userId, List<Integer> ids) {
+    public void removeCartGoods(Integer userId, List<Integer> ids) {
         List<UserShoppingCart>cartList=baseMapper.selectList(new LambdaQueryWrapper<UserShoppingCart>()
                 .eq(UserShoppingCart::getUserId,userId));
         if (cartList.size()==0){
@@ -111,5 +111,16 @@ private  final GoodsMapper goodsMapper;
                 ids.contains(item.getId())).collect(Collectors.toList());
         //刪除購物車信息
         removeBatchByIds(deleteCartList);
+    }
+
+    @Override
+    public void editCartSelected(Boolean selected, Integer userId) {
+        List<UserShoppingCart>cartList=baseMapper.selectList(new LambdaQueryWrapper<UserShoppingCart>()
+                .eq(UserShoppingCart::getUserId,userId));
+        if (cartList.size()==0){
+            return;
+        }
+        cartList.stream().forEach(item->item.setSelected(selected));
+        saveOrUpdateBatch(cartList);
     }
 }

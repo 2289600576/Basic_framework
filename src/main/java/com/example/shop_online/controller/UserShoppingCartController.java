@@ -1,5 +1,6 @@
 package com.example.shop_online.controller;
 
+import com.example.shop_online.common.exception.ServerException;
 import com.example.shop_online.common.result.Result;
 import com.example.shop_online.service.UserShoppingCartService;
 import com.example.shop_online.vo.CartGoodsVO;
@@ -53,6 +54,24 @@ public class UserShoppingCartController {
         CartGoodsVO goodsVO = userShoppingCartService.editCart(query);
         return Result.ok(goodsVO);
 
+    }
+    @Operation(summary = "删除/清空购物车单品")
+    @DeleteMapping("remove")
+    public Result removeShopCart(@RequestBody List<Integer> ids, HttpServletRequest request) {
+        Integer userId = getUserId(request);
+        if (ids.size() == 0) {
+            throw new ServerException("请选择需要删除的购物车商品");
+        }
+        userShoppingCartService.removeCartGoods(userId, ids);
+        return Result.ok();
+    }
+
+    @Operation(summary = "购物车全选/取消全选")
+    @PutMapping("selected")
+    public Result editCartSelected(@RequestParam Boolean selected, HttpServletRequest request) {
+        Integer userId = getUserId(request);
+        userShoppingCartService.editCartSelected(selected, userId);
+        return Result.ok();
     }
 
 }
