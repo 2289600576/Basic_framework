@@ -2,10 +2,10 @@ package com.example.shop_online.controller;
 
 import com.example.shop_online.common.exception.ServerException;
 import com.example.shop_online.common.result.Result;
+import com.example.shop_online.query.CartQuery;
+import com.example.shop_online.query.EditCartQuery;
 import com.example.shop_online.service.UserShoppingCartService;
 import com.example.shop_online.vo.CartGoodsVO;
-import com.example.shop_online.vo.CartQuery;
-import com.example.shop_online.vo.EditCartQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;

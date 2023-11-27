@@ -1,15 +1,15 @@
-package com.example.shop_online.vo;
+package com.example.shop_online.query;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class CartQuery {
     @Schema(description = "商品id")
     @NotNull(message = "商品主键id不能为空")
-//    非空注釋
     private String id;
     @Schema(description = "加入购物车数量")
     @NotNull(message = "加入购物车数量不能为空")

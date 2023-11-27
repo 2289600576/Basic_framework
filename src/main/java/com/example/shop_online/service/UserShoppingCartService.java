@@ -2,10 +2,9 @@ package com.example.shop_online.service;
 
 import com.example.shop_online.entity.UserShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.shop_online.query.CartQuery;
+import com.example.shop_online.query.EditCartQuery;
 import com.example.shop_online.vo.CartGoodsVO;
-import com.example.shop_online.vo.CartQuery;
-import com.example.shop_online.vo.EditCartQuery;
-import io.lettuce.core.dynamic.annotation.Param;
 
 import java.util.List;
 

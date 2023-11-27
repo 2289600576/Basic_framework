@@ -1,8 +1,9 @@
-package com.example.shop_online.vo;
+package com.example.shop_online.query;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class EditCartQuery {
@@ -14,3 +15,4 @@ public class EditCartQuery {
     @Schema(description = "选购商品数量")
     private Integer count;
 }
+
