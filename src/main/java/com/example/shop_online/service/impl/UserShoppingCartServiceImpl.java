@@ -6,11 +6,11 @@ import com.example.shop_online.entity.Goods;
 import com.example.shop_online.entity.UserShoppingCart;
 import com.example.shop_online.mapper.GoodsMapper;
 import com.example.shop_online.mapper.UserShoppingCartMapper;
+import com.example.shop_online.query.CartQuery;
+import com.example.shop_online.query.EditCartQuery;
 import com.example.shop_online.service.UserShoppingCartService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.shop_online.vo.CartGoodsVO;
-import com.example.shop_online.vo.CartQuery;
-import com.example.shop_online.vo.EditCartQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
